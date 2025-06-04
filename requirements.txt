@@ -1,0 +1,6 @@
+fastapi
+gradio
+uvicorn[standard]
+gunicorn
+transformers
+torch
