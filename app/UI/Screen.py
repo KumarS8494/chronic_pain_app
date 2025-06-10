@@ -46,12 +46,12 @@ def get_interface():
 
         with gr.Row():
             with gr.Column():
-                Age = gr.Dropdown(age_values, label="Age",interactive=True, allow_custom_value=True)
-                Gender = gr.Dropdown(gender_values, label="Gender", interactive=True, allow_custom_value=True)
-                Weight = gr.Dropdown(weight_values, label="Weight (kg)", interactive=True, allow_custom_value=True)
-                Duration = gr.Dropdown(duration_values, label="Duration (months)", interactive=True, allow_custom_value=True)
-                PainScore = gr.Dropdown(pain_score_values, label="Pain Score (out of 100)", interactive=True, allow_custom_value=True)
-                Side_of_pain = gr.Dropdown(side_of_pain_values, label="Side of Pain", interactive=True, allow_custom_value=True)
+                Age = gr.Dropdown(age_values, value=None, label="Age",interactive=True, allow_custom_value=True)
+                Gender = gr.Dropdown(gender_values, value=None ,label="Gender", interactive=True, allow_custom_value=True)
+                Weight = gr.Dropdown(weight_values, value=None ,label="Weight (kg)", interactive=True, allow_custom_value=True)
+                Duration = gr.Dropdown(duration_values,value=None, label="Duration (months)", interactive=True, allow_custom_value=True)
+                PainScore = gr.Dropdown(pain_score_values, value=None ,label="Pain Score (out of 100)", interactive=True, allow_custom_value=True)
+                Side_of_pain = gr.Dropdown(side_of_pain_values, value=None ,label="Side of Pain", interactive=True, allow_custom_value=True)
 
             with gr.Column():
                 with gr.Accordion("🩻 Site and Features of Pain", open=True):
