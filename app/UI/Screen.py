@@ -55,13 +55,13 @@ def get_interface():
 
             with gr.Column():
                 with gr.Accordion("🩻 Site and Features of Pain", open=True):
-                    Pain1 = gr.Dropdown(pain_site_values, label="Site and Features of Pain 1 (Primary Pain Site)", interactive=True, allow_custom_value=True)
-                    Pain2 = gr.Dropdown(pain_site_values, label="Site and Features of Pain 2(Secondary Pain Site)",   interactive=True, allow_custom_value=True)
-                    Pain3 = gr.Dropdown(pain_site_values, label="Site and Features of Pain 3(Pain Extension or Specific Location)", interactive=True, allow_custom_value=True)
-                    Pain4 = gr.Dropdown(pain_site_values, label="Site and Features of Pain 4 (Pain Triggers or Aggravating Factors)", interactive=True, allow_custom_value=True)
-                    Pain5 = gr.Dropdown(pain_site_values, label="Site and Features of Pain 5 (Pain Relief Factors or Tenderness)",   interactive=True, allow_custom_value=True)
-                    Pain6 = gr.Dropdown(pain_site_values, label="Site and Features of Pain 6(Movement or Functional Impact)", interactive=True, allow_custom_value=True)
-                    Pain7 = gr.Dropdown(pain_site_values, label="Site and Features of Pain 7 (Additional Pain Characteristic)", interactive=True, allow_custom_value=True)
+                    Pain1 = gr.Dropdown(pain_site_values, value= None, label="Site and Features of Pain 1 (Primary Pain Site)", interactive=True, allow_custom_value=True)
+                    Pain2 = gr.Dropdown(pain_site_values, value= None, label="Site and Features of Pain 2(Secondary Pain Site)",   interactive=True, allow_custom_value=True)
+                    Pain3 = gr.Dropdown(pain_site_values, value= None, label="Site and Features of Pain 3(Pain Extension or Specific Location)", interactive=True, allow_custom_value=True)
+                    Pain4 = gr.Dropdown(pain_site_values, value= None, label="Site and Features of Pain 4 (Pain Triggers or Aggravating Factors)", interactive=True, allow_custom_value=True)
+                    Pain5 = gr.Dropdown(pain_site_values, value= None, label="Site and Features of Pain 5 (Pain Relief Factors or Tenderness)",   interactive=True, allow_custom_value=True)
+                    Pain6 = gr.Dropdown(pain_site_values, value= None, label="Site and Features of Pain 6(Movement or Functional Impact)", interactive=True, allow_custom_value=True)
+                    Pain7 = gr.Dropdown(pain_site_values, value= None, label="Site and Features of Pain 7 (Additional Pain Characteristic)", interactive=True, allow_custom_value=True)
 
         with gr.Row():
             predict_btn = gr.Button("🧠 Predict Diagnosis", variant="primary")
