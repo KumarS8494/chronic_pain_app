@@ -1,6 +1,8 @@
 import gradio as gr
 from fastapi import FastAPI
 from app.UI.Screen import get_interface
+from dotenv import load_dotenv
+load_dotenv()
 
 app = FastAPI()
 

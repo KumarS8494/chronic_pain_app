@@ -2,6 +2,9 @@
 
 import gradio as gr
 from app.utils.predict import predict_diagnosis
+from app.utils.User_handler import save_to_mongo
+from dotenv import load_dotenv
+load_dotenv()
 
 age_values = ['25', '30', '35', '40', '45']
 gender_values = ['Male', 'Female']
@@ -37,7 +40,33 @@ def predict_wrapper(age, gender, weight, duration, pain_score, side_of_pain,
         f"Side of Pain: {side_of_pain}\n"
         f"Features of Pain: {features}"
     )
-    return predict_diagnosis(text)
+    
+    print("🔍 Text to predict:\n", text)  
+
+    try:
+        prediction = predict_diagnosis(text)
+        print("✅ Prediction Result:", prediction)
+    except Exception as e:
+        print("❌ Prediction Error:", e)
+        return "Prediction failed. Please check the logs."
+
+    data_to_save = {
+        "age": age,
+        "gender":gender,
+        "weight": weight,
+        "duration": duration,
+        "pain_score": pain_score,
+        "side_of_pain": side_of_pain,
+        "pain_features": [pain1, pain2, pain3, pain4, pain5, pain6, pain7],
+        "prediction_diagnosis": prediction,
+        "confidence": prediction.split("Confidence: ")[-1] if "Confidence: " in prediction else "N/A",
+    }
+    try:
+        mongo_id = save_to_mongo(data_to_save)
+    except Exception as e:
+        # print("MongoDB Save Error:", e)
+        return f"Prediction: {prediction}\n Save Failed"
+    return prediction
 
 def get_interface():
     with gr.Blocks(css=".gradio-container { background-color: #f9f9fc; }") as demo:
@@ -86,4 +115,4 @@ def get_interface():
 
 if __name__ == "__main__":
     demo = get_interface()
-    demo.launch(server_name="0.0.0.0", server_port=7860)
+    demo.launch(server_name="0.0.0.0", server_port=8000, share=True, debug=True)

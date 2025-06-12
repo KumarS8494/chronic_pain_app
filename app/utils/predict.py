@@ -1,10 +1,10 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 
-# Use GPU if available
+# Checking CUDA is available or not
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
-
+ 
 model_path = "krsuman123/Chronic_Pain_classification"
 model = AutoModelForSequenceClassification.from_pretrained(model_path).to(device)
 tokenizer = AutoTokenizer.from_pretrained(model_path)
@@ -26,4 +26,4 @@ def predict_diagnosis(text):
     probs = torch.nn.functional.softmax(outputs.logits, dim=1)
     pred_label = torch.argmax(probs, dim=1).item()
     confidence = float(probs[0][pred_label])
-    return f"Predicted Diagnosis: {label_map[pred_label]} (Confidence: {confidence:.2%})"
+    return f"{label_map[pred_label]} (Confidence: {confidence:.2%})"

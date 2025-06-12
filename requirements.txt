@@ -4,3 +4,7 @@ uvicorn[standard]
 gunicorn
 transformers
 torch
+pymongo
+python-dotenv
+certifi
+dnspython

@@ -3,7 +3,7 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 
-# Use GPU if available
+# Check if GPU is available and set the device.
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
@@ -30,7 +30,6 @@ def predict_diagnosis(text):
     confidence = float(probs[0][pred_label])
     return f"Predicted Diagnosis: {label_map[pred_label]} (Confidence: {confidence:.2%})"
 
-# Sample test input
 sample_text = """Age: 35
 Gender: Male
 Weight: 70 kg
