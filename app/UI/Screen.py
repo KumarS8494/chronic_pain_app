@@ -70,33 +70,51 @@ def predict_wrapper(age, gender, weight, duration, pain_score, side_of_pain,
 
 def get_interface():
     with gr.Blocks(css="""
-        .gradio-container { background-color: #f9f9fc; }
+    .gradio-container { background-color: #f9f9fc; }
 
+    #logo-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 90px;
+        padding: 10px 0;
+        flex-wrap: wrap;
+    }
+
+    .logo-img img {
+        max-height: 60px;
+        width: auto;
+        object-fit: contain;
+    }
+
+    /* Smaller logo for logo2 */
+    #logo2 img {
+        max-height: 50px;
+    }
+
+    /* Larger logo for logo3 */
+    #logo3 img {
+        max-height: 80px;
+    }
+
+    @media (max-width: 768px) {
         #logo-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 90px;
-            padding: 10px 0;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 40px;
         }
 
         .logo-img img {
-            max-height: 60px;
-            width: auto;
-            object-fit: contain;
+            max-height: 40px;
         }
 
-        @media (max-width: 768px) {
-            #logo-wrapper {
-                flex-direction: column;
-                gap: 40px;
-            }
-
-            .logo-img img {
-                max-height: 40px;
-            }
+        #logo2 img {
+            max-height: 35px;
         }
+
+        #logo3 img {
+            max-height: 55px;
+        }
+    }
     """) as demo:
         with gr.Row(elem_id="logo-row"):
             with gr.Row(elem_id="logo-wrapper"):
