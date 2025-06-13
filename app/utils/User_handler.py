@@ -2,6 +2,8 @@ from pymongo import MongoClient
 import certifi
 import os
 import traceback
+from datetime import datetime
+
 
 mongo_uri = os.getenv("MONGO_URI")
 db_name = os.getenv("DB_NAME")
@@ -29,6 +31,8 @@ except Exception as e:
 def save_to_mongo(data: dict) -> str | None:
 
     try:
+        now = datetime.utcnow()
+        data["timestamp"] = now.strftime("%Y-%m-%d %H:%M:%S") 
         result = collection.insert_one(data)
         print(" Data inserted with ID:", result.inserted_id)
         return str(result.inserted_id)

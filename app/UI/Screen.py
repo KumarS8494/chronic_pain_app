@@ -69,9 +69,44 @@ def predict_wrapper(age, gender, weight, duration, pain_score, side_of_pain,
     return prediction
 
 def get_interface():
-    with gr.Blocks(css=".gradio-container { background-color: #f9f9fc; }") as demo:
-        gr.Markdown("## 🧠 Chronic Pain Diagnostic Tool")
-        gr.Markdown("Fill out the patient info below and get a probable diagnosis using ClinicalBERT.")
+    with gr.Blocks(css="""
+        .gradio-container { background-color: #f9f9fc; }
+
+        #logo-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 90px;
+            padding: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .logo-img img {
+            max-height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            #logo-wrapper {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .logo-img img {
+                max-height: 40px;
+            }
+        }
+    """) as demo:
+        with gr.Row(elem_id="logo-row"):
+            with gr.Row(elem_id="logo-wrapper"):
+                gr.Image(value="app/ui/assets/logo1.png",show_label=False, show_download_button=False, show_fullscreen_button=False, elem_id="logo1", elem_classes=["logo-img"],container=False)
+                gr.Image(value="app/ui/assets/logo2.png", show_label=False, show_download_button=False, show_fullscreen_button=False, elem_id="logo2", elem_classes=["logo-img"],container=False)
+                gr.Image(value="app/ui/assets/logo3.png", show_label=False, show_download_button=False, show_fullscreen_button=False, elem_id="logo3", elem_classes=["logo-img"],container=False)
+                gr.Image(value="app/ui/assets/logo4.png", show_label=False, show_download_button=False, show_fullscreen_button=False, elem_id="logo4", elem_classes=["logo-img"],container=False)
+
+        gr.Markdown("# 🧠 Chronic Pain Diagnostic Tool")
+        gr.Markdown("##### Fill out the patient info below and get a probable diagnosis using AI.")
 
         with gr.Row():
             with gr.Column():
