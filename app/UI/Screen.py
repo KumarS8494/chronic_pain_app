@@ -3,6 +3,7 @@
 import gradio as gr
 from app.utils.predict import predict_diagnosis
 from app.utils.User_handler import save_to_mongo
+import os
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -68,6 +69,11 @@ def predict_wrapper(age, gender, weight, duration, pain_score, side_of_pain,
         return f"Prediction: {prediction}\n Save Failed"
     return prediction
 
+logo_path1 = os.path.join(os.path.dirname(__file__), "ui/assets/logo1.png")
+logo_path2 = os.path.join(os.path.dirname(__file__), "ui/assets/logo2.png")
+logo_path3 = os.path.join(os.path.dirname(__file__), "ui/assets/logo3.png")
+logo_path4 = os.path.join(os.path.dirname(__file__), "ui/assets/logo4.png")
+
 def get_interface():
     with gr.Blocks(css="""
     .gradio-container { background-color: #f9f9fc; }
@@ -118,10 +124,10 @@ def get_interface():
     """) as demo:
         with gr.Row(elem_id="logo-row"):
             with gr.Row(elem_id="logo-wrapper"):
-                gr.Image(value="app/ui/assets/logo1.png",show_label=False, show_download_button=False, show_fullscreen_button=False, elem_id="logo1", elem_classes=["logo-img"],container=False)
-                gr.Image(value="app/ui/assets/logo2.png", show_label=False, show_download_button=False, show_fullscreen_button=False, elem_id="logo2", elem_classes=["logo-img"],container=False)
-                gr.Image(value="app/ui/assets/logo3.png", show_label=False, show_download_button=False, show_fullscreen_button=False, elem_id="logo3", elem_classes=["logo-img"],container=False)
-                gr.Image(value="app/ui/assets/logo4.png", show_label=False, show_download_button=False, show_fullscreen_button=False, elem_id="logo4", elem_classes=["logo-img"],container=False)
+                gr.Image(value=logo_path1,show_label=False, show_download_button=False, show_fullscreen_button=False, elem_id="logo1", elem_classes=["logo-img"],container=False)
+                gr.Image(value=logo_path2, show_label=False, show_download_button=False, show_fullscreen_button=False, elem_id="logo2", elem_classes=["logo-img"],container=False)
+                gr.Image(value=logo_path3, show_label=False, show_download_button=False, show_fullscreen_button=False, elem_id="logo3", elem_classes=["logo-img"],container=False)
+                gr.Image(value=logo_path4, show_label=False, show_download_button=False, show_fullscreen_button=False, elem_id="logo4", elem_classes=["logo-img"],container=False)
 
         gr.Markdown("# 🧠 Chronic Pain Diagnostic Tool")
         gr.Markdown("##### Fill out the patient info below and get a probable diagnosis using AI.")
